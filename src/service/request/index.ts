@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ElLoading } from 'element-plus'
+import { ElLoading,ElMessage } from 'element-plus'
 //引入axios已实现好的接口 AxiosInstance
 import type { AxiosInstance } from 'axios'
 //基于axios实现好的接口 引入自己的接口数据
@@ -51,7 +51,11 @@ class hYRequest {
         //將loading移除
         this.loading?.close()
         if (data.returnCode === '-1001') {
-          console.log('请求失败~')
+          ElMessage({
+            showClose: true,
+            message: '请求失败！！！',
+            type: 'error',
+          })
         } else {
           return data
         }

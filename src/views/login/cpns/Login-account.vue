@@ -1,8 +1,8 @@
 <template>
   <div class="login-account">
     <el-form :rules="rules" :model="account" ref="formRef">
-      <el-form-item prop="name">
-        <el-input placeholder="用户名：admin / user" v-model="account.name">
+      <el-form-item prop="username">
+        <el-input placeholder="用户名：admin / user" v-model="account.username">
           <template #prefix>
             <el-icon class="el-input__icon"><user /></el-icon>
           </template>
@@ -32,11 +32,12 @@ import { ElForm } from 'element-plus'
 //获取一下store
 const store = useStore()
 const account = reactive({
-  name: '',
+  username: '',
   password: ''
 })
+//验证规则
 const rules = {
-  name: [
+  username: [
     { required: true, message: '用户名是必传内容~', trigger: 'blur' },
     {
       pattern: /^[a-z0-9]{5,18}$/,

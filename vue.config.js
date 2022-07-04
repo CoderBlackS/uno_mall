@@ -6,9 +6,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '^/api': {
-        target: 'http://152.136.185.210:5000',
-        //uno目标测试环境解决跨域
-        // target: 'http://192.168.21.4:55/',
+        target: 'http://192.168.21.4:55',
         pathRewrite: {
           '^/api': ''
         },

@@ -8,7 +8,7 @@ const hyRequest = new hYRequest({
       const token = localCache.getCache('token')
       if (config && config.headers) {
         // 多一步判断
-        config.headers.Authorization = `Bearer ${token}`
+        config.headers.Authorization = `${token}`
       }
       return config
     },
