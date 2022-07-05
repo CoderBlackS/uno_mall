@@ -5,6 +5,7 @@ import router from '@/router'
 import { accountLoginRequest,loginLeftMenus } from '@/service/login/login'
 import { IAccount } from '@/service/login/types'
 import localCache from '@/untils/cache'
+import {mapMenuToRoutes} from "@/untils/map-menu"
 //模块中的泛型有两个值一个是当前login 一个是根
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -23,6 +24,11 @@ const loginModule: Module<ILoginState, IRootState> = {
     //存菜单信息
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+    //这里无论何时都会保存一下状态关系
+    //  userMenus =>route 动态路由
+    //  将routes=>添加到router里面
+     const routes = mapMenuToRoutes(userMenus)
+      console.log(routes)
     }
   },
   actions: {

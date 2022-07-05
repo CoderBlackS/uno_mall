@@ -6,7 +6,7 @@
     </div>
     <login-account ref="accountRef"></login-account>
     <div class="login-btn">
-      <el-button :icon="CircleClose" round size="large">重置</el-button>
+      <el-button :icon="CircleClose" round size="large" @click='handleLoginReset'>重置</el-button>
       <el-button
         :icon="UserFilled"
         @click="handleLoginClick"
@@ -26,6 +26,9 @@ import { ref, onMounted } from 'vue'
 const accountRef = ref<InstanceType<typeof LoginAccount>>()
 const handleLoginClick = () => {
   accountRef.value?.loginAction()
+}
+const handleLoginReset=()=>{
+  accountRef.value?.loginReset()
 }
 </script>
 

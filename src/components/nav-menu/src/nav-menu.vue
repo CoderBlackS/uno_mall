@@ -2,7 +2,7 @@
  <div class="nav-menu">
    <div class='logo'>
      <img class='img' src='~@/assets/img/logo.svg' alt='logo'>
-     <span class='title'>UNO-Applet</span>
+     <span v-if='!collapse' class='title'>UNO-Applet</span>
    </div>
    <el-menu
      active-text-color="#ffd04b"
@@ -13,6 +13,7 @@
      text-color="#fff"
      @open="handleOpen"
      @close="handleClose"
+     :collapse="collapse"
      >
      <template v-for='item in userMenus' :key='item.id'>
         <!--二级菜单-->
@@ -20,7 +21,12 @@
          <!--二级菜单可以展开的标题-->
          <el-sub-menu :index='item.id + ""'>
            <template #title>
-             <i v-if='item.icon' :class='item.icon'></i>
+            <template v-if='item.id===1'>
+              <el-icon><Shop /></el-icon>
+            </template>
+             <template v-else>
+               <el-icon><ShoppingBag /></el-icon>
+             </template>
              <span>{{item.title}}</span>
            </template>
            <!--遍历里面的item -->
@@ -48,6 +54,12 @@
 import {useStore} from '@/store'
 import { computed,defineComponent } from 'vue'
 export default defineComponent({
+  props:{
+    collapse:{
+      type:Boolean,
+      default:false
+    }
+  },
   setup(){
     const store = useStore()
     const handleOpen = (key: string, keyPath: string[]) => {
@@ -71,8 +83,8 @@ export default defineComponent({
 <style scoped lang='less'>
 .logo{
   display: flex;
-  height: 28px;
-  padding: 12px 10px 8px 10px;
+  height: 24px;
+  padding: 14px 10px 10px 10px;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -85,6 +97,9 @@ export default defineComponent({
     font-weight: 700;
     color: white;
   }
+}
+.el-menu {
+  border-right:none;
 }
 ::v-deep .el-sub-menu__title{
   background-color: rgb(53 76 98) !important;

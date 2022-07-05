@@ -29,6 +29,7 @@
 import { ref, reactive, defineExpose } from 'vue'
 import { useStore } from 'vuex'
 import { ElForm } from 'element-plus'
+import type { FormInstance } from 'element-plus'
 //获取一下store
 const store = useStore()
 const account = reactive({
@@ -64,9 +65,14 @@ const loginAction = () => {
     }
   })
 }
+//重置账号密码
+const loginReset = () =>{
+  formRef.value?.resetFields();
+}
 //将需要暴露出去的数据与方法都可以暴露出去
 defineExpose({
-  loginAction
+  loginAction,
+  loginReset
 })
 </script>
 
