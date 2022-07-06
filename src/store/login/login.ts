@@ -28,7 +28,10 @@ const loginModule: Module<ILoginState, IRootState> = {
     //  userMenus =>route 动态路由
     //  将routes=>添加到router里面
      const routes = mapMenuToRoutes(userMenus)
-      console.log(routes)
+      routes.forEach((route)=>{
+        router.addRoute("main",route)
+      })
+
     }
   },
   actions: {

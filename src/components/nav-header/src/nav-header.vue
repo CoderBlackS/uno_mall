@@ -1,6 +1,6 @@
 <template>
   <div class='nav-header'>
-    <div class='1' @click='handleFoldClick'>
+    <div @click='handleFoldClick'>
       <template v-if='isFold === false'>
         <el-icon class="fold_menu"><Fold /></el-icon>
       </template>
@@ -8,6 +8,7 @@
         <el-icon class="fold_menu"><Expand /></el-icon>
       </template>
     </div>
+
   </div>
 </template>
 

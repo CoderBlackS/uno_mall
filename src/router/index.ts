@@ -10,6 +10,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/main',
+    name:'main',
     component: () => import('../views/main/Main.vue')
   //  children:[]  根据userMenus决定
   },
@@ -22,12 +23,12 @@ const routes: RouteRecordRaw[] = [
     component:()=>import('@/views/not-found/Not-found.vue')
   }
 ]
-
 const router = createRouter({
   routes,
   history: createWebHashHistory()
 })
 
+//没有token跳转首页
 router.beforeEach((to) => {
   if (to.path !== '/login') {
     const token = localCache.getCache('token')
@@ -35,6 +36,7 @@ router.beforeEach((to) => {
       return '/login'
     }
   }
+  console.log(router.getRoutes())
 })
 
 export default router

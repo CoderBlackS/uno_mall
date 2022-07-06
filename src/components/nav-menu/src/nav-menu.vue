@@ -31,7 +31,7 @@
            </template>
            <!--遍历里面的item -->
            <template v-for='suite in item.children' :key='suite.item'>
-             <el-menu-item :index='suite.id + ""'>
+             <el-menu-item :index='suite.id + ""' @click='handleMenuItemClick(suite)'>
                <i v-if='suite.icon' :class='suite.icon'></i>
                <span>{{suite.title}}</span>
              </el-menu-item>
@@ -53,6 +53,7 @@
 <script lang="ts" >
 import {useStore} from '@/store'
 import { computed,defineComponent } from 'vue'
+import {useRouter} from "vue-router"
 export default defineComponent({
   props:{
     collapse:{
@@ -68,12 +69,19 @@ export default defineComponent({
     const handleClose = (key: string, keyPath: string[]) => {
       console.log(key, keyPath)
     }
+    const router = useRouter()
+    const handleMenuItemClick = (item:any)=>{
+      console.log(item)
+      router.push({
+        path:item.path ?? '/not-found'
+      })
+    }
     const userMenus = computed(()=>store.state.login.userMenus)
     return {
       userMenus,
       handleOpen,
-      handleClose
-
+      handleClose,
+      handleMenuItemClick
     }
   }
 })
