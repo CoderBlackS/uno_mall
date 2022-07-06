@@ -23,7 +23,9 @@
 import LoginAccount from './Login-account.vue'
 import { CircleClose, UserFilled } from '@element-plus/icons-vue'
 import { ref, onMounted } from 'vue'
+//拿到组件实例ref
 const accountRef = ref<InstanceType<typeof LoginAccount>>()
+//点击回调实例的ref的方法
 const handleLoginClick = () => {
   accountRef.value?.loginAction()
 }

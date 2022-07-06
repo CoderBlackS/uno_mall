@@ -1,4 +1,4 @@
-//使用coderwhy插件生成动态路由路径进行匹配
+//使用corderwhy插件生成动态路由路径进行匹配
 //coderwhy add3page ipdate -d src/views/shop/update
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { RouteRecordRaw } from 'vue-router'
